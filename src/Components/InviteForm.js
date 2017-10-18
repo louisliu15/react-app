@@ -1,21 +1,20 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-export class InviteForm extends React.Components{
-	constructor (props){
-		super(props);
+const InviteForm = props =>
+	<form onSubmit={props.newGuestSubmitHandler}>
+		<input 
+			type="text"
+			value={props.pendingGuest} 
+			onChange={props.handleNameInput} 
+			placeholder="Invite Someone" />
+		<button name="submit" type="submit" value="submit">Submit</button>
+	</form>
 
-		this.state = {name: ""};
-		this.handleUserInput = this.handleUserInput.bind(this);
-	}
-
-	handleUserInput(){
-		this.state.name;
-	}
-
-	render(){
-		<form>
-			<input type="text" value={this.state.name} placeholder="Invite Someone">
-			<button type="submit" name="submit" value="submit" onClick={this.handleUserInput}>Submit</button>
-		</form>
-	}
+InviteForm.PropTypes = {
+	pendingGuest: PropTypes.string.isRequired,
+	newGuestSubmitHandler: PropTypes.func.isRequired,
+	handleNameInput: PropTypes.func.isRequired
 }
+
+export default InviteForm;
